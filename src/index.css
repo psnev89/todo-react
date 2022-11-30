@@ -11,5 +11,5 @@ body {
 }
 
 .button-layout {
-    @apply px-8 rounded-md h-10;
+    @apply px-8 rounded-md h-10 font-medium;
 }
