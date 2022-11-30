@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gradient-to-l from-indigo-300 to-red-200;
+}
+
+.card {
+  @apply rounded-md bg-white p-10;
+}
