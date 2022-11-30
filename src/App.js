@@ -11,13 +11,18 @@ const App = () => {
     }
   };
 
+  const removeTodo = (todoText) => {
+    const filtered = todos.filter((todo) => todo !== todoText);
+    setTodos(filtered);
+  };
+
   return (
     <div className="mx-auto max-w-3xl">
       <h1 className="font-bold underline text-3xl text-center">
         React Todo App
       </h1>
 
-      <div className="my-8 card flex gap-4">
+      <div className="my-8 card flex gap-4 items-center">
         <input
           className="bg-gray-50 border border-gray-300 rounded-md p-2 hover:bg-indigo-50 focus:outline-indigo-500 flex-1"
           type="text"
@@ -28,7 +33,7 @@ const App = () => {
         />
         <button
           type="button"
-          className="px-8 text-white bg-indigo-500 hover:bg-indigo-600 rounded-md"
+          className="button-layout text-white bg-indigo-500 hover:bg-indigo-600"
           onClick={addTodo}
         >
           Add
@@ -36,11 +41,30 @@ const App = () => {
       </div>
 
       <div className="card">
-        <div>todo: {todo}</div>
-        <div>
-          todos:
-          <pre>{todos}</pre>
-        </div>
+        {!todos?.length ? (
+          <div className="w-full text-center">
+            <div className="text-[100px]">&#128076;</div>
+            <div className="font-bold text-2xl text-indigo-900">No tasks</div>
+          </div>
+        ) : (
+          <ul>
+            {todos.map((todo, index) => (
+              <li key={index} className="border p-4 rounded-md mb-2 last:mb-0">
+                <div className="flex items-center">
+                  <span className="flex-1 text-indigo-900 font-bold text-lg">
+                    {todo}
+                  </span>
+                  <button
+                    className="button-layout text-white bg-red-700"
+                    onClick={() => removeTodo(todo)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

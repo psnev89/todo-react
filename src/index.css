@@ -9,3 +9,7 @@ body {
 .card {
   @apply rounded-md bg-white p-10;
 }
+
+.button-layout {
+    @apply px-8 rounded-md h-10;
+}
