@@ -1,4 +1,6 @@
-const TodoList = ({ todos, removeTodo }) => {
+import TodoListItem from "./TodoListItem";
+
+const TodoList = ({ todos, removeTodo, toggleCompleteTodo }) => {
   return (
     <>
       {!todos?.length ? (
@@ -15,25 +17,12 @@ const TodoList = ({ todos, removeTodo }) => {
           </div>
           <ul>
             {todos.map((todo, index) => (
-              <li key={index} className="border p-4 rounded-md mb-2 last:mb-0">
-                <div className="flex gap-4 items-center">
-                  <div className="flex-1">
-                    <div className="text-indigo-900 font-bold text-lg">
-                      {todo.title}
-                    </div>
-                    <p className="m-0 text-sm text-gray-500">
-                      {todo.observations}
-                    </p>
-                  </div>
-
-                  <button
-                    className="button-layout text-white bg-red-700"
-                    onClick={() => removeTodo(todo.id)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              </li>
+              <TodoListItem
+                key={index}
+                todo={todo}
+                removeTodo={removeTodo}
+                toggleCompleteTodo={toggleCompleteTodo}
+              ></TodoListItem>
             ))}
           </ul>
         </>
