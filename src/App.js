@@ -6,7 +6,15 @@ import useTodos from "./Hooks/useTodos";
 
 const App = () => {
   const [todoForm, setTodoForm] = useState(TODO_FORM_INITIAL_STATE);
-  const { todos, addTodo, removeTodo, toggleCompleteTodo } = useTodos();
+  const {
+    addTodo,
+    removeTodo,
+    toggleCompleteTodo,
+    filterTodos,
+    activeTodosFilter,
+    getTodos,
+    clearCompletedTodos
+  } = useTodos();
 
   const add = () => {
     addTodo(todoForm);
@@ -25,9 +33,12 @@ const App = () => {
 
       <div className="card">
         <TodoList
-          todos={todos}
+          todos={getTodos()}
           removeTodo={removeTodo}
           toggleCompleteTodo={toggleCompleteTodo}
+          filterTodos={filterTodos}
+          activeTodosFilter={activeTodosFilter}
+          clearCompletedTodos={clearCompletedTodos}
         ></TodoList>
       </div>
     </div>

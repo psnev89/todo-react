@@ -2,7 +2,7 @@ const TodoListItem = ({ todo, removeTodo, toggleCompleteTodo }) => {
   return (
     <li
       className={`group/item border p-4 rounded-md mb-2 last:mb-0 ${
-        todo.completed ? "bg-indigo-100 opacity-60" : ""
+        todo.completed ? "bg-indigo-50 opacity-60" : ""
       }`}
     >
       <div className="flex gap-4 items-center">

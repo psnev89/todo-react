@@ -1,11 +1,24 @@
 import { useState } from "react";
-import { FORM_PROPS } from "../helpers";
+import { FORM_PROPS, TODO_STATUS_FILTER } from "../helpers";
 
 let id = 0;
 
 const useTodos = () => {
   const [todos, setTodos] = useState([]);
-  
+  const [todoListFilter, setTodoListFilter] = useState(null);
+
+  const getTodos = () => {
+    if (todoListFilter === TODO_STATUS_FILTER.ACTIVE)
+      return todos.filter((todo) => !todo.completed);
+    if (todoListFilter === TODO_STATUS_FILTER.COMPLETED)
+      return todos.filter((todo) => !!todo.completed);
+    return todos;
+  };
+
+  const filterTodos = (status) => {
+    setTodoListFilter(status);
+  };
+
   const createTodo = (title, observations) => {
     return {
       id: ++id,
@@ -30,6 +43,11 @@ const useTodos = () => {
     setTodos(filtered);
   };
 
+  const clearCompletedTodos = () => {
+    const filtered = todos.filter((todo) => !todo.completed);
+    setTodos(filtered);
+  };
+
   const toggleCompleteTodo = (todoId) => {
     const newTodos = todos.map((todo) => {
       if (todo.id === todoId) {
@@ -45,6 +63,10 @@ const useTodos = () => {
     addTodo,
     removeTodo,
     toggleCompleteTodo,
+    getTodos,
+    filterTodos,
+    activeTodosFilter: todoListFilter,
+    clearCompletedTodos,
   };
 };
 
